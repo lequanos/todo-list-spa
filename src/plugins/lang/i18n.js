@@ -14,6 +14,7 @@ i18n
     backend: {
       loadPath: 'locales/{{lng}}/translation.json',
     },
+    load: 'currentOnly',
   });
 
 export default i18n;

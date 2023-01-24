@@ -1,7 +1,7 @@
 import { SET_USER, SET_LANG } from '@/plugins/store/actions/actions';
 
 export const initialState = {
-  email: '',
+  email: 'tranvanba.quan@gmail.com',
   lang: 'fr-FR',
 };
 

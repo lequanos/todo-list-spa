@@ -1,0 +1,10 @@
+#root .Task {
+  &--inactive {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+
+  &--late {
+    color: $error;
+  }
+}

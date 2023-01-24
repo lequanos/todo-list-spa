@@ -7,5 +7,12 @@
     "Title": "Please submit your email to access the application",
     "Email_Label": "Email",
     "Validate": "Validate"
+  },
+  "Task": {
+    "Late": "Late"
+  },
+  "Unauthorized": {
+    "Title": "Please submit your email to access the application",
+    "Back": "Back to home"
   }
 }

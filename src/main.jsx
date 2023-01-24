@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import CssBaseline from '@mui/material/CssBaseline';
 import { RouterProvider } from 'react-router-dom';
@@ -10,6 +10,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import Loader from '@/components/Loader/Loader';
 import store from './plugins/store/store';
 import router from './plugins/router/router';
 import './plugins/lang/i18n';
@@ -35,7 +36,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <CssBaseline />
     <StoreProvider store={store}>
       <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
+        <Suspense fallback={<Loader />}>
+          <RouterProvider router={router} />
+        </Suspense>
       </ThemeProvider>
     </StoreProvider>
   </React.StrictMode>,

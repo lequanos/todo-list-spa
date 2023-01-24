@@ -26,15 +26,15 @@ const router = createBrowserRouter(
             },
           ],
         },
-        {
-          path: '/401',
-          element: <Unauthorized />,
-        },
-        {
-          path: '*',
-          element: <NotFound />,
-        },
       ],
+    },
+    {
+      path: '/401',
+      element: <Unauthorized />,
+    },
+    {
+      path: '*',
+      element: <NotFound />,
     },
   ],
   {
