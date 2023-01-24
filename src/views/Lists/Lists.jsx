@@ -1,5 +1,5 @@
-function List() {
-  return <div>Je suis une liste</div>;
+function Lists() {
+  return <div>Je suis une listse</div>;
 }
 
-export default List;
+export default Lists;
