@@ -5,6 +5,14 @@ import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import './src/styles/variables.scss';`,
+      },
+    },
+    devSourceMap: true,
+  },
   plugins: [
     react(),
     eslint({

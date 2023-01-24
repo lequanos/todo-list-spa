@@ -7,5 +7,12 @@
     "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
     "Email_Label": "Adresse email",
     "Validate": "Valider"
+  },
+  "Task": {
+    "Late": "Retard"
+  },
+  "Unauthorized": {
+    "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
+    "Back": "Retour à l'accueil"
   }
 }

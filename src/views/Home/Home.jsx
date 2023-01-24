@@ -62,7 +62,11 @@ function Home() {
           >
             {t('Home.Title')}
           </Typography>
-          <Box component="form" onSubmit={handleSubmit(handleSetEmail)}>
+          <Box
+            className="Home--card-form"
+            component="form"
+            onSubmit={handleSubmit(handleSetEmail)}
+          >
             <Controller
               name="email"
               control={control}
