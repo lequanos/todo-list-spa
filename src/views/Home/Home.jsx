@@ -1,4 +1,3 @@
-import logo from '@/assets/logo.svg';
 import {
   Container,
   Card,
@@ -10,10 +9,15 @@ import {
   Box,
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import logo from '@/assets/logo.svg';
 import './Home.scss';
+import { SET_USER } from '@/store/actions/actions';
 
 function Home() {
+  // Hooks
   const {
     handleSubmit,
     control,
@@ -25,6 +29,8 @@ function Home() {
     },
   });
   const { email } = watch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   /**
    * Submit email form
@@ -37,12 +43,13 @@ function Home() {
    * Set email in store
    */
   const handleSetEmail = () => {
-    console.log(email);
+    dispatch({ type: SET_USER, email });
+    navigate('/lists');
   };
 
   return (
     <Container className="Home">
-      <img className="Home--logo" src={logo} />
+      <img className="Home--logo" src={logo} alt="Todo logo" />
       <Card className="Home--card" elevation={8}>
         <CardContent className="Home--card-content">
           <Typography
@@ -52,7 +59,7 @@ function Home() {
           >
             Veuillez entrer une adresse mail pour accéder à l'application
           </Typography>
-          <Box Box component="form" onSubmit={handleSubmit(handleSetEmail)}>
+          <Box component="form" onSubmit={handleSubmit(handleSetEmail)}>
             <Controller
               name="email"
               control={control}

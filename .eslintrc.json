@@ -1,16 +1,15 @@
 {
-  "parser": "esprima",
   "parserOptions": {
     "sourceType": "module",
     "include": ["vite.config.ts"]
   },
-  "extends": ["plugin:prettier/recommended"],
+  "extends": ["plugin:prettier/recommended", "react-app"],
   "root": true,
   "env": {
     "node": true,
     "jest": true
   },
-  "ignorePatterns": [".eslintrc.js"],
+  "ignorePatterns": [".eslintrc.json"],
   "rules": {
     "prettier/prettier": "error"
   }
