@@ -11,10 +11,11 @@ import {
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import logo from '@/assets/logo.svg';
 import './Home.scss';
-import { SET_USER } from '@/store/actions/actions';
+import { SET_USER } from '@/plugins/store/actions/actions';
 
 function Home() {
   // Hooks
@@ -31,6 +32,7 @@ function Home() {
   const { email } = watch();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation('translation');
 
   /**
    * Submit email form
@@ -43,6 +45,7 @@ function Home() {
    * Set email in store
    */
   const handleSetEmail = () => {
+    dispatch({ type: SET_USER, email });
     dispatch({ type: SET_USER, email });
     navigate('/lists');
   };
@@ -57,24 +60,24 @@ function Home() {
             gutterBottom
             className="Home--card-title"
           >
-            Veuillez entrer une adresse mail pour accéder à l'application
+            {t('Home.Title')}
           </Typography>
           <Box component="form" onSubmit={handleSubmit(handleSetEmail)}>
             <Controller
               name="email"
               control={control}
               rules={{
-                required: 'Adresse email requise',
+                required: t('Error.Email_Required'),
                 pattern: {
                   value:
                     /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
-                  message: 'Veuillez entrer une adresse email valide',
+                  message: t('Error.Email_Format'),
                 },
               }}
               render={({ field }) => (
                 <TextField
                   className="Home--card-input"
-                  label="Adresse email"
+                  label={t('Home.Email_Label')}
                   variant="filled"
                   size="small"
                   error={!!errors.email}
@@ -87,7 +90,7 @@ function Home() {
         </CardContent>
         <CardActions>
           <Button className="Home--card-button" onClick={handleValidate}>
-            Valider
+            {t('Home.Validate')}
           </Button>
         </CardActions>
       </Card>

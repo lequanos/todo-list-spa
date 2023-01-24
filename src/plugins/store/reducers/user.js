@@ -1,16 +1,22 @@
-import { SET_USER } from '@/store/actions/actions';
+import { SET_USER, SET_LANG } from '@/plugins/store/actions/actions';
 
 export const initialState = {
   email: '',
+  lang: 'fr-FR',
 };
 
 const reducer = (state = initialState, action = {}) => {
-  console.log(action.email);
   switch (action.type) {
     case SET_USER: {
       return {
         ...state,
         email: action.email,
+      };
+    }
+    case SET_LANG: {
+      return {
+        ...state,
+        lang: action.lang,
       };
     }
     default:

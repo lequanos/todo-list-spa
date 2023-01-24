@@ -5,12 +5,14 @@ import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Provider as StoreProvider } from 'react-redux';
 
+import './main.scss';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import store from './store/store';
-import router from './router/router';
+import store from './plugins/store/store';
+import router from './plugins/router/router';
+import './plugins/lang/i18n';
 
 const theme = createTheme({
   palette: {

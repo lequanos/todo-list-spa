@@ -3,8 +3,8 @@ import Home from '@/views/Home/Home';
 import Lists from '@/views/Lists/Lists';
 import Unauthorized from '@/components/Unauthorized/Unauthorized';
 import NotFound from '@/components/NotFound/NotFound';
-import RootBoundary from '../components/RootBoundary/RootBoundary';
-import RequireUser from '../components/RequireUser/RequireUser';
+import RootBoundary from '../../components/RootBoundary/RootBoundary';
+import RequireUser from '../../components/RequireUser/RequireUser';
 
 const router = createBrowserRouter(
   [
