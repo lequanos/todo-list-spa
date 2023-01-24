@@ -1,0 +1,11 @@
+{
+  "Error": {
+    "Email_Required": "Remail required",
+    "Email_Format": "Please enter a valid email"
+  },
+  "Home": {
+    "Title": "Please submit your email to access the application",
+    "Email_Label": "Email",
+    "Validate": "Validate"
+  }
+}

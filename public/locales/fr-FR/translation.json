@@ -1,0 +1,11 @@
+{
+  "Error": {
+    "Email_Required": "Adresse email requise",
+    "Email_Format": "Veuillez entrer une adresse email valide"
+  },
+  "Home": {
+    "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
+    "Email_Label": "Adresse email",
+    "Validate": "Valider"
+  }
+}
