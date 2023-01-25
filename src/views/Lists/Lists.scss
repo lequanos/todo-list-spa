@@ -1,0 +1,31 @@
+#root .Lists {
+  display: flex;
+  min-height: 100vh;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 0;
+
+  .MuiCardHeader-action {
+    margin-right: 0px;
+    margin-top: 0.5px;
+  }
+
+  .MuiCardHeader-root {
+    padding-bottom: 0;
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+
+  .MuiInputBase--root {
+    padding-left: 0;
+  }
+
+  &--add-btn {
+    position: sticky;
+    bottom: 1rem;
+    left: calc(100% - 5rem);
+  }
+}

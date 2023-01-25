@@ -1,0 +1,32 @@
+{
+  "Error": {
+    "Email_Required": "Remail required",
+    "Title_Required": "Title required",
+    "Email_Format": "Please enter a valid email"
+  },
+  "Home": {
+    "Title": "Please submit your email to access the application",
+    "Email_Label": "Email",
+    "Validate": "Validate"
+  },
+  "Task": {
+    "Late": "Late"
+  },
+  "List": {
+    "Add_Task": "Add task",
+    "CreateSuccess": "List created successfully",
+    "UpdateSuccess": "List updated successfully",
+    "DeleteSuccess": "List deleted successfully"
+  },
+  "AddListModal": {
+    "Title": "Add list",
+    "Text": "Please enter the title of your list",
+    "Label": "Title",
+    "Cancel": "Cancel",
+    "Validate": "Validate"
+  },
+  "Unauthorized": {
+    "Title": "Please submit your email to access the application",
+    "Back": "Back to home"
+  }
+}
