@@ -1,0 +1,32 @@
+{
+  "Error": {
+    "Email_Required": "Adresse email requise",
+    "Title_Required": "Titre requis",
+    "Email_Format": "Veuillez entrer une adresse email valide"
+  },
+  "Home": {
+    "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
+    "Email_Label": "Adresse email",
+    "Validate": "Valider"
+  },
+  "Task": {
+    "Late": "Retard"
+  },
+  "List": {
+    "Add_Task": "Ajouter une tâche",
+    "CreateSuccess": "Liste créée avec succès",
+    "UpdateSuccess": "Liste mise à jour avec succès",
+    "DeleteSuccess": "Liste supprimée avec succès"
+  },
+  "AddListModal": {
+    "Title": "Ajout d'une liste",
+    "Text": "Veuillez saisir le titre de votre liste",
+    "Label": "Titre",
+    "Cancel": "Annuler",
+    "Validate": "Valider"
+  },
+  "Unauthorized": {
+    "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
+    "Back": "Retour à l'accueil"
+  }
+}
