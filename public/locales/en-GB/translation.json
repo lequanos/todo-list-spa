@@ -13,7 +13,9 @@
     "Late": "Late"
   },
   "List": {
-    "Add_Task": "Add task"
+    "Add_Task": "Add task",
+    "CreateSuccess": "List created successfully",
+    "UpdateSuccess": "List updated successfully"
   },
   "AddListModal": {
     "Title": "Add list",

@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import userReducer from './user';
 import listsReducer from './lists';
-import errorReducer from './error';
+import toastReducer from './toast';
 
 const rootReducer = combineReducers({
   user: userReducer,
   lists: listsReducer,
-  error: errorReducer,
+  toast: toastReducer,
 });
 
 export default rootReducer;

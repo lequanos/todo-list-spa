@@ -9,6 +9,13 @@ const listService = {
       title,
     });
   },
+  updateList(list) {
+    return api.put('/list', {
+      id: list.id,
+      title: list.title,
+      tasks: list.tasks,
+    });
+  },
 };
 
 export default listService;

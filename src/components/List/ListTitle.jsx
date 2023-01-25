@@ -6,7 +6,9 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
-function ListTitle({ title: titleProps }) {
+import { UPDATE_LIST } from '@/plugins/store/actions/actions';
+
+function ListTitle({ title: titleProps, tasks, listId }) {
   const {
     handleSubmit,
     control,
@@ -26,7 +28,22 @@ function ListTitle({ title: titleProps }) {
   /**
    * Update list
    */
-  const handleUpdateList = () => {};
+  const handleUpdateList = () => {
+    dispatch({
+      type: UPDATE_LIST,
+      list: {
+        id: listId,
+        title,
+        tasks: tasks.map((task) => ({
+          id: task._id,
+          title: task.title,
+          endDate: task.endDate,
+          status: task.status,
+        })),
+      },
+    });
+    setReadOnly(!readOnly);
+  };
 
   /**
    * Edit title
@@ -76,6 +93,12 @@ function ListTitle({ title: titleProps }) {
 
 ListTitle.propTypes = {
   title: PropTypes.string.isRequired,
+  tasks: PropTypes.array,
+  listId: PropTypes.string.isRequired,
+};
+
+ListTitle.defaultProps = {
+  tasks: [],
 };
 
 export default ListTitle;
