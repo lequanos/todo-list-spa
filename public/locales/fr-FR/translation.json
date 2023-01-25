@@ -15,7 +15,8 @@
   "List": {
     "Add_Task": "Ajouter une tâche",
     "CreateSuccess": "Liste créée avec succès",
-    "UpdateSuccess": "Liste mise à jour avec succès"
+    "UpdateSuccess": "Liste mise à jour avec succès",
+    "DeleteSuccess": "Liste supprimée avec succès"
   },
   "AddListModal": {
     "Title": "Ajout d'une liste",
