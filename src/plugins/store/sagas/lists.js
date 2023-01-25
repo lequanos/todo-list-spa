@@ -1,12 +1,20 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { SET_LISTS, FETCH_LISTS } from '@/plugins/store/actions/actions';
-
-import api from '@/api/api';
+import {
+  SET_LISTS,
+  FETCH_LISTS,
+  SET_ERROR,
+} from '@/plugins/store/actions/actions';
+import listService from '@/services/listService';
 
 export function* fetchLists() {
-  const result = yield call(api.get, '/lists');
-  yield put({ type: SET_LISTS, lists: result.data });
+  try {
+    const result = yield call(listService.getMyLists);
+    yield put({ type: SET_LISTS, lists: result.data });
+  } catch (error) {
+    if (error.response.status === 401) throw new Response('', { status: 401 });
+    yield put({ type: SET_ERROR, error });
+  }
 }
 
 export function* watchFetchLists() {
