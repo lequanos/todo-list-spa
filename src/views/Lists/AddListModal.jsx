@@ -10,7 +10,10 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { CREATE_LIST } from '@/plugins/store/actions/actions';
 
 function AddListModal({ open, setOpen }) {
   // Hooks
@@ -27,6 +30,7 @@ function AddListModal({ open, setOpen }) {
   });
   const { title } = watch();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   // Methods
   /**
@@ -41,15 +45,17 @@ function AddListModal({ open, setOpen }) {
    * Save new list
    */
   const handleCreateList = () => {
-    console.log(title);
+    dispatch({ type: CREATE_LIST, title });
   };
 
   /**
    * Validate the form
    */
-  const handleValidate = () => {
-    handleSubmit(handleCreateList)();
-    handleClose();
+  const handleValidate = async (e) => {
+    e.preventDefault();
+    await handleSubmit(handleCreateList)();
+
+    if (!errors.hasOwnProperty('title')) handleClose();
   };
 
   return (
@@ -57,11 +63,7 @@ function AddListModal({ open, setOpen }) {
       <DialogTitle>{t('AddListModal.Title')}</DialogTitle>
       <DialogContent>
         <DialogContentText>{t('AddListModal.Text')}</DialogContentText>
-        <Box
-          className="Home--card-form"
-          component="form"
-          onSubmit={handleSubmit(handleCreateList)}
-        >
+        <Box component="form" onSubmit={async (e) => await handleValidate(e)}>
           <Controller
             name="title"
             control={control}
