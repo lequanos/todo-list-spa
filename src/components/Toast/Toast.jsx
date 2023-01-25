@@ -5,7 +5,7 @@ import { CLOSE_TOAST } from '../../plugins/store/actions/actions';
 
 function Toast() {
   // Hooks
-  const error = useSelector((state) => state.error);
+  const toast = useSelector((state) => state.toast);
   const dispatch = useDispatch();
 
   const handleCloseSnackbar = (_, reason) => {
@@ -17,13 +17,13 @@ function Toast() {
   };
   return (
     <Snackbar
-      open={error.open}
+      open={toast.open}
       autoHideDuration={1500}
       onClose={handleCloseSnackbar}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
     >
-      <Alert onClose={handleCloseSnackbar} severity="error">
-        {error.message}
+      <Alert onClose={handleCloseSnackbar} severity={toast.severity}>
+        {toast.message}
       </Alert>
     </Snackbar>
   );

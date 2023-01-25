@@ -13,7 +13,9 @@
     "Late": "Retard"
   },
   "List": {
-    "Add_Task": "Ajouter une tâche"
+    "Add_Task": "Ajouter une tâche",
+    "CreateSuccess": "Liste créée avec succès",
+    "UpdateSuccess": "Liste mise à jour avec succès"
   },
   "AddListModal": {
     "Title": "Ajout d'une liste",

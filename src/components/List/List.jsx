@@ -25,7 +25,7 @@ function List({ title, tasks, listId }) {
             <Delete />
           </IconButton>
         }
-        title={<ListTitle title={title} />}
+        title={<ListTitle title={title} tasks={tasks} listId={listId} />}
         subheader={
           <Button
             className="List--button"

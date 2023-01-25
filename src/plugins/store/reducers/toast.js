@@ -1,8 +1,13 @@
-import { SET_ERROR, CLOSE_TOAST } from '@/plugins/store/actions/actions';
+import {
+  SET_ERROR,
+  CLOSE_TOAST,
+  SET_SUCCESS,
+} from '@/plugins/store/actions/actions';
 
 export const initialState = {
   open: false,
   message: '',
+  severity: 'success',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -10,7 +15,15 @@ const reducer = (state = initialState, action = {}) => {
     case SET_ERROR: {
       return {
         open: true,
-        message: action.error.message,
+        message: action.message,
+        severity: 'error',
+      };
+    }
+    case SET_SUCCESS: {
+      return {
+        open: true,
+        message: action.message,
+        severity: 'success',
       };
     }
     case CLOSE_TOAST: {
