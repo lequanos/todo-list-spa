@@ -28,7 +28,7 @@ function List({ title, tasks, listId }) {
         <MuiList>
           {tasks.map((task) => (
             <Task
-              key={task.id}
+              key={task._id}
               title={task.title}
               endDate={task.endDate}
               status={task.status}

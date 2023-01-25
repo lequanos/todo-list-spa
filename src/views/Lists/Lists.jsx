@@ -2,7 +2,9 @@ import { Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+import './Lists.scss';
 import List from '@/components/List/List';
+import Toast from '@/components/Toast/Toast';
 import { FETCH_LISTS } from '@/plugins/store/actions/actions';
 
 function Lists() {
@@ -15,15 +17,16 @@ function Lists() {
   }, [dispatch]);
 
   return (
-    <Container>
+    <Container className="Lists">
       {lists.map((list) => (
         <List
-          key={list.id}
+          key={list._id}
           title={list.title}
           tasks={list.tasks}
-          listId={list.id}
+          listId={list._id}
         />
       ))}
+      <Toast />
     </Container>
   );
 }
