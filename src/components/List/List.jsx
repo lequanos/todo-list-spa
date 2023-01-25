@@ -8,20 +8,28 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { Delete, AddCircleOutlined } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Task from '../Task/Task';
 import ListTitle from './ListTitle';
+import { DELETE_LIST } from '@/plugins/store/actions/actions';
 
 function List({ title, tasks, listId }) {
   // Hooks
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  // Methods
+  const handleDeleteList = () => {
+    dispatch({ type: DELETE_LIST, listId });
+  };
 
   return (
     <Card sx={{ width: 350 }} elevation={8}>
       <CardHeader
         action={
-          <IconButton>
+          <IconButton onClick={handleDeleteList}>
             <Delete />
           </IconButton>
         }

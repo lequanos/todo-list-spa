@@ -16,6 +16,9 @@ const listService = {
       tasks: list.tasks,
     });
   },
+  deleteList(listId) {
+    return api.delete(`/list/${listId}`);
+  },
 };
 
 export default listService;

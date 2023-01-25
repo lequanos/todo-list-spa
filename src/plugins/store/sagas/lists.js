@@ -7,6 +7,7 @@ import {
   SET_SUCCESS,
   CREATE_LIST,
   UPDATE_LIST,
+  DELETE_LIST,
 } from '@/plugins/store/actions/actions';
 import listService from '@/services/listService';
 import i18n from '@/plugins/lang/i18n';
@@ -63,4 +64,30 @@ export function* updateList(action) {
 
 export function* watchUpdateList() {
   yield takeEvery(UPDATE_LIST, updateList);
+}
+
+export function* deleteList(action) {
+  try {
+    yield call(listService.deleteList, action.listId);
+    yield put({
+      type: FETCH_LISTS,
+    });
+    yield put({
+      type: SET_SUCCESS,
+      message: i18n.t('List.DeleteSuccess'),
+    });
+  } catch (error) {
+    if (error.response?.status === 401)
+      throw new Response('', {
+        status: 401,
+      });
+    yield put({
+      type: SET_ERROR,
+      message: error.response.message || error.response.data.message,
+    });
+  }
+}
+
+export function* watchDeleteList() {
+  yield takeEvery(DELETE_LIST, deleteList);
 }

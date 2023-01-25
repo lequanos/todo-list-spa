@@ -7,3 +7,4 @@ export const SET_SUCCESS = 'SET_SUCCESS';
 export const CLOSE_TOAST = 'CLOSE_TOAST';
 export const CREATE_LIST = 'CREATE_LIST';
 export const UPDATE_LIST = 'UPDATE_LIST';
+export const DELETE_LIST = 'DELETE_LIST';
