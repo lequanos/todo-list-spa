@@ -60,15 +60,13 @@ function List({ title, tasks, listId }) {
 }
 
 List.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   tasks: PropTypes.array,
-  listId: PropTypes.string,
+  listId: PropTypes.string.isRequired,
 };
 
 List.defaultProps = {
-  title: '',
   tasks: [],
-  listId: '',
 };
 
 export default List;

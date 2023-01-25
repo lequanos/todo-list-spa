@@ -15,6 +15,13 @@
   "List": {
     "Add_Task": "Ajouter une tâche"
   },
+  "AddListModal": {
+    "Title": "Ajout d'une liste",
+    "Text": "Veuillez saisir le titre de votre liste",
+    "Label": "Titre",
+    "Cancel": "Annuler",
+    "Validate": "Valider"
+  },
   "Unauthorized": {
     "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
     "Back": "Retour à l'accueil"

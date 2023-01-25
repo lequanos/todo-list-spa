@@ -12,7 +12,7 @@ export function* fetchLists() {
     const result = yield call(listService.getMyLists);
     yield put({ type: SET_LISTS, lists: result.data });
   } catch (error) {
-    if (error.response.status === 401) throw new Response('', { status: 401 });
+    if (error.response?.status === 401) throw new Response('', { status: 401 });
     yield put({ type: SET_ERROR, error });
   }
 }

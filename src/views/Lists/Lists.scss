@@ -18,4 +18,14 @@
   .MuiOutlinedInput-notchedOutline {
     border: none;
   }
+
+  .MuiInputBase--root {
+    padding-left: 0;
+  }
+
+  &--add-btn {
+    position: sticky;
+    bottom: 1rem;
+    left: calc(100% - 5rem);
+  }
 }
