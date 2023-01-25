@@ -5,4 +5,17 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 1rem 0;
+
+  .MuiCardHeader-action {
+    margin-right: 0px;
+    margin-top: 0.5px;
+  }
+
+  .MuiCardHeader-root {
+    padding-bottom: 0;
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
 }
