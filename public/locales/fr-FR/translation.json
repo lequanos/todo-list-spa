@@ -1,6 +1,7 @@
 {
   "Error": {
     "Email_Required": "Adresse email requise",
+    "Title_Required": "Titre requis",
     "Email_Format": "Veuillez entrer une adresse email valide"
   },
   "Home": {
@@ -10,6 +11,9 @@
   },
   "Task": {
     "Late": "Retard"
+  },
+  "List": {
+    "Add_Task": "Ajouter une tâche"
   },
   "Unauthorized": {
     "Title": "Veuillez entrer une adresse mail pour accéder à l'application",

@@ -1,6 +1,7 @@
 {
   "Error": {
     "Email_Required": "Remail required",
+    "Title_Required": "Title required",
     "Email_Format": "Please enter a valid email"
   },
   "Home": {
@@ -10,6 +11,9 @@
   },
   "Task": {
     "Late": "Late"
+  },
+  "List": {
+    "Add_Task": "Add task"
   },
   "Unauthorized": {
     "Title": "Please submit your email to access the application",

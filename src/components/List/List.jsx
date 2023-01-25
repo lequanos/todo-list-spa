@@ -4,22 +4,40 @@ import {
   IconButton,
   CardContent,
   List as MuiList,
+  Button,
 } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import { Delete, AddCircleOutlined } from '@mui/icons-material';
 import PropTypes from 'prop-types';
 
 import Task from '../Task/Task';
+import ListTitle from './ListTitle';
 
 function List({ title, tasks, listId }) {
+  // Hooks
+  const { t } = useTranslation();
+
   return (
     <Card sx={{ width: 350 }} elevation={8}>
       <CardHeader
         action={
           <IconButton>
-            <Add />
+            <Delete />
           </IconButton>
         }
-        title={title}
+        title={<ListTitle title={title} />}
+        subheader={
+          <Button
+            className="List--button"
+            startIcon={<AddCircleOutlined />}
+            size="small"
+            sx={{
+              mt: '0.5rem',
+            }}
+          >
+            {t('List.Add_Task')}
+          </Button>
+        }
         titleTypographyProps={{
           variant: 'h5',
         }}
