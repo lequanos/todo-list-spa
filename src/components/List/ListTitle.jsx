@@ -75,11 +75,7 @@ function ListTitle({ title: titleProps }) {
 }
 
 ListTitle.propTypes = {
-  title: PropTypes.string,
-};
-
-ListTitle.defaultProps = {
-  title: '',
+  title: PropTypes.string.isRequired,
 };
 
 export default ListTitle;
