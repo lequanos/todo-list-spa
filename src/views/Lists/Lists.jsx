@@ -6,11 +6,11 @@ import { useEffect } from 'react';
 import './Lists.scss';
 import List from '@/components/List/List';
 import Toast from '@/components/Toast/Toast';
-import AddListModal from './AddListModal';
-import AddTaskModal from './AddTaskModal';
+import ListModal from './ListModal';
+import TaskModal from './TaskModal';
 import {
   FETCH_LISTS,
-  TOGGLE_ADD_LIST_MODAL,
+  TOGGLE_LIST_MODAL,
 } from '@/plugins/store/actions/actions';
 
 function Lists() {
@@ -19,12 +19,12 @@ function Lists() {
   const lists = useSelector((state) => state.lists);
 
   /**
-   * Open add list modal
+   * Open list modal
    */
-  const handleOpenAddListModal = () => {
+  const handleOpenListModal = () => {
     dispatch({
-      type: TOGGLE_ADD_LIST_MODAL,
-      addListModal: true,
+      type: TOGGLE_LIST_MODAL,
+      listModal: true,
     });
   };
 
@@ -48,12 +48,12 @@ function Lists() {
       <Fab
         className="Lists--add-btn"
         color="secondary"
-        onClick={handleOpenAddListModal}
+        onClick={handleOpenListModal}
       >
         <Add />
       </Fab>
-      <AddListModal />
-      <AddTaskModal />
+      <ListModal />
+      <TaskModal />
     </>
   );
 }

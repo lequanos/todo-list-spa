@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -15,11 +16,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 
 import './Lists.scss';
-import { CREATE_TASK } from '@/plugins/store/actions/actions';
-import { TOGGLE_ADD_TASK_MODAL } from '@/plugins/store/actions/actions';
+import {
+  CREATE_TASK,
+  TOGGLE_TASK_MODAL,
+  UPDATE_TASK,
+  RESET_TASK,
+} from '@/plugins/store/actions/actions';
 
-function AddTaskModal() {
+function TaskModal() {
   // Hooks
+  const currentTask = useSelector((state) => state.task);
   const {
     handleSubmit,
     control,
@@ -29,13 +35,13 @@ function AddTaskModal() {
   } = useForm({
     defaultValues: {
       title: '',
-      endDate: new Date(),
+      endDate: dayjs(),
     },
   });
   const { title, endDate } = watch();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const addTaskModal = useSelector((state) => state.modal.addTaskModal);
+  const taskModal = useSelector((state) => state.modal.taskModal);
   const listId = useSelector((state) => state.modal.listId);
 
   // Methods
@@ -43,8 +49,10 @@ function AddTaskModal() {
    * Close modal
    */
   const handleClose = () => {
-    dispatch({ type: TOGGLE_ADD_TASK_MODAL, addTaskModal: false });
+    dispatch({ type: TOGGLE_TASK_MODAL, taskModal: false });
+    dispatch({ type: RESET_TASK });
     setValue('title', '');
+    setValue('endDate', dayjs());
   };
 
   /**
@@ -62,22 +70,54 @@ function AddTaskModal() {
   };
 
   /**
+   * Update task
+   */
+  const handleUpdateTask = () => {
+    dispatch({
+      type: UPDATE_TASK,
+      task: {
+        id: currentTask.id,
+        title,
+        endDate,
+        status: currentTask.status,
+        listId,
+      },
+    });
+  };
+
+  /**
    * Validate the form
    */
   const handleValidate = async (e) => {
     e.preventDefault();
-    await handleSubmit(handleCreateTask)();
+
+    if (currentTask.id.length) {
+      await handleSubmit(handleUpdateTask)();
+    } else {
+      await handleSubmit(handleCreateTask)();
+    }
 
     if (!errors.hasOwnProperty('title')) handleClose();
   };
 
+  useEffect(() => {
+    if (currentTask.id.length) {
+      setValue('title', currentTask.title);
+      setValue('endDate', dayjs(currentTask.endDate));
+    }
+  }, [setValue, currentTask]);
+
   return (
-    <Dialog open={addTaskModal} onClose={handleClose}>
-      <DialogTitle>{t('AddTaskModal.Title')}</DialogTitle>
+    <Dialog open={taskModal} onClose={handleClose}>
+      <DialogTitle>
+        {currentTask.id.length
+          ? t('TaskModal.UpdateTitle')
+          : t('TaskModal.CreateTitle')}
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText>{t('AddTaskModal.Text')}</DialogContentText>
+        <DialogContentText>{t('TaskModal.Text')}</DialogContentText>
         <Box
-          className="AddTaskModal--form"
+          className="TaskModal--form"
           component="form"
           onSubmit={async (e) => await handleValidate(e)}
         >
@@ -94,7 +134,7 @@ function AddTaskModal() {
                 helperText={errors.title?.message}
                 autoFocus
                 margin="dense"
-                label={t('AddTaskModal.Title_Label')}
+                label={t('TaskModal.Title_Label')}
                 fullWidth
                 variant="standard"
                 {...field}
@@ -110,7 +150,7 @@ function AddTaskModal() {
             render={({ field }) => (
               <DateTimePicker
                 renderInput={(props) => <TextField {...props} />}
-                label={t('AddTaskModal.EndDate_Label')}
+                label={t('TaskModal.EndDate_Label')}
                 minDateTime={dayjs()}
                 {...field}
               />
@@ -119,11 +159,11 @@ function AddTaskModal() {
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>{t('AddTaskModal.Cancel')}</Button>
-        <Button onClick={handleValidate}>{t('AddTaskModal.Validate')}</Button>
+        <Button onClick={handleClose}>{t('TaskModal.Cancel')}</Button>
+        <Button onClick={handleValidate}>{t('TaskModal.Validate')}</Button>
       </DialogActions>
     </Dialog>
   );
 }
 
-export default AddTaskModal;
+export default TaskModal;

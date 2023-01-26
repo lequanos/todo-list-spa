@@ -14,7 +14,11 @@ import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 
 import './Task.scss';
-import { UPDATE_TASK } from '@/plugins/store/actions/actions';
+import { TOGGLE_CHECK_TASK } from '@/plugins/store/actions/actions';
+import {
+  SET_TASK,
+  TOGGLE_TASK_MODAL,
+} from '../../plugins/store/actions/actions';
 
 function Task({ id, title, endDate, status, listId }) {
   // Hooks
@@ -27,7 +31,7 @@ function Task({ id, title, endDate, status, listId }) {
    */
   const handleCheckTask = () => {
     dispatch({
-      type: UPDATE_TASK,
+      type: TOGGLE_CHECK_TASK,
       task: { id, title, endDate, listId, status: getTaskStatus() },
     });
   };
@@ -48,6 +52,14 @@ function Task({ id, title, endDate, status, listId }) {
     }
   };
 
+  /**
+   * Open task modal to edit task
+   */
+  const handleOpenTaskModal = () => {
+    dispatch({ type: SET_TASK, task: { id, title, endDate, listId, status } });
+    dispatch({ type: TOGGLE_TASK_MODAL, taskModal: true, listId });
+  };
+
   return (
     <>
       <Divider />
@@ -56,7 +68,10 @@ function Task({ id, title, endDate, status, listId }) {
         alignItems="flex-start"
         disableGutters
         secondaryAction={
-          <IconButton disabled={status === 'inactive'}>
+          <IconButton
+            onClick={handleOpenTaskModal}
+            disabled={status === 'inactive'}
+          >
             <Edit />
           </IconButton>
         }

@@ -5,6 +5,7 @@ import {
   SET_ERROR,
   SET_SUCCESS,
   CREATE_TASK,
+  TOGGLE_CHECK_TASK,
   UPDATE_TASK,
   DELETE_TASK,
 } from '@/plugins/store/actions/actions';
@@ -30,6 +31,26 @@ export function* addTask(action) {
 
 export function* watchAddTask() {
   yield takeEvery(CREATE_TASK, addTask);
+}
+
+export function* toggleCheckTask(action) {
+  try {
+    yield call(taskService.updateTask, action.task);
+    yield put({ type: FETCH_LISTS });
+  } catch (error) {
+    if (error.response?.status === 401)
+      throw new Response('', {
+        status: 401,
+      });
+    yield put({
+      type: SET_ERROR,
+      message: error.response.message || error.response.data.message,
+    });
+  }
+}
+
+export function* watchToggleCheckTask() {
+  yield takeEvery(TOGGLE_CHECK_TASK, toggleCheckTask);
 }
 
 export function* updateTask(action) {

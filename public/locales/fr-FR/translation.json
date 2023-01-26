@@ -22,15 +22,16 @@
     "UpdateSuccess": "Liste mise à jour avec succès",
     "DeleteSuccess": "Liste supprimée avec succès"
   },
-  "AddListModal": {
+  "ListModal": {
     "Title": "Ajout d'une liste",
     "Text": "Veuillez saisir le titre de votre liste",
     "Label": "Titre",
     "Cancel": "Annuler",
     "Validate": "Valider"
   },
-  "AddTaskModal": {
-    "Title": "Ajout d'une tâche",
+  "TaskModal": {
+    "CreateTitle": "Ajout d'une tâche",
+    "UpdateTitle": "Mise à jour d'une tâche",
     "Text": "Veuillez saisir le titre et la date de fin prévue de votre tâche",
     "Title_Label": "Titre",
     "EndDate_Label": "Date de fin prévue",

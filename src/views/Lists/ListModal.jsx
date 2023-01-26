@@ -14,10 +14,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   CREATE_LIST,
-  TOGGLE_ADD_LIST_MODAL,
+  TOGGLE_LIST_MODAL,
 } from '@/plugins/store/actions/actions';
 
-function AddListModal() {
+function ListModal() {
   // Hooks
   const {
     handleSubmit,
@@ -33,7 +33,7 @@ function AddListModal() {
   const { title } = watch();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const addListModal = useSelector((state) => state.modal.addListModal);
+  const listModal = useSelector((state) => state.modal.listModal);
 
   // Methods
   /**
@@ -41,8 +41,8 @@ function AddListModal() {
    */
   const handleClose = () => {
     dispatch({
-      type: TOGGLE_ADD_LIST_MODAL,
-      addListModal: false,
+      type: TOGGLE_LIST_MODAL,
+      listModal: false,
     });
     setValue('title', '');
   };
@@ -65,10 +65,10 @@ function AddListModal() {
   };
 
   return (
-    <Dialog open={addListModal} onClose={handleClose}>
-      <DialogTitle>{t('AddListModal.Title')}</DialogTitle>
+    <Dialog open={listModal} onClose={handleClose}>
+      <DialogTitle>{t('ListModal.Title')}</DialogTitle>
       <DialogContent>
-        <DialogContentText>{t('AddListModal.Text')}</DialogContentText>
+        <DialogContentText>{t('ListModal.Text')}</DialogContentText>
         <Box component="form" onSubmit={async (e) => await handleValidate(e)}>
           <Controller
             name="title"
@@ -83,7 +83,7 @@ function AddListModal() {
                 helperText={errors.title?.message}
                 autoFocus
                 margin="dense"
-                label={t('AddListModal.Label')}
+                label={t('ListModal.Label')}
                 fullWidth
                 variant="standard"
                 {...field}
@@ -93,11 +93,11 @@ function AddListModal() {
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>{t('AddListModal.Cancel')}</Button>
-        <Button onClick={handleValidate}>{t('AddListModal.Validate')}</Button>
+        <Button onClick={handleClose}>{t('ListModal.Cancel')}</Button>
+        <Button onClick={handleValidate}>{t('ListModal.Validate')}</Button>
       </DialogActions>
     </Dialog>
   );
 }
 
-export default AddListModal;
+export default ListModal;

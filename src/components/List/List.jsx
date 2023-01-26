@@ -15,7 +15,7 @@ import Task from '../Task/Task';
 import ListTitle from './ListTitle';
 import {
   DELETE_LIST,
-  TOGGLE_ADD_TASK_MODAL,
+  TOGGLE_TASK_MODAL,
 } from '@/plugins/store/actions/actions';
 
 function List({ title, tasks, listId }) {
@@ -34,8 +34,8 @@ function List({ title, tasks, listId }) {
   /**
    * Handle open create task modal
    */
-  const handleOpenAddTaskModal = () => {
-    dispatch({ type: TOGGLE_ADD_TASK_MODAL, addTaskModal: true, listId });
+  const handleOpenTaskModal = () => {
+    dispatch({ type: TOGGLE_TASK_MODAL, taskModal: true, listId });
   };
 
   return (
@@ -55,7 +55,7 @@ function List({ title, tasks, listId }) {
             sx={{
               mt: '0.5rem',
             }}
-            onClick={handleOpenAddTaskModal}
+            onClick={handleOpenTaskModal}
           >
             {t('List.Add_Task')}
           </Button>

@@ -22,15 +22,16 @@
     "UpdateSuccess": "List updated successfully",
     "DeleteSuccess": "List deleted successfully"
   },
-  "AddListModal": {
+  "ListModal": {
     "Title": "Add list",
     "Text": "Please enter a title for your list",
     "Label": "Title",
     "Cancel": "Cancel",
     "Validate": "Validate"
   },
-  "AddTaskModal": {
-    "Title": "Add task",
+  "TaskModal": {
+    "CreateTitle": "Add task",
+    "UpdateTitle": "Update task",
     "Text": "Please enter a title and a planned end date for your task",
     "Title_Label": "Title",
     "EndDate_Label": "Planned end date",
