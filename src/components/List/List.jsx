@@ -13,7 +13,10 @@ import PropTypes from 'prop-types';
 
 import Task from '../Task/Task';
 import ListTitle from './ListTitle';
-import { DELETE_LIST } from '@/plugins/store/actions/actions';
+import {
+  DELETE_LIST,
+  TOGGLE_ADD_TASK_MODAL,
+} from '@/plugins/store/actions/actions';
 
 function List({ title, tasks, listId }) {
   // Hooks
@@ -21,8 +24,18 @@ function List({ title, tasks, listId }) {
   const dispatch = useDispatch();
 
   // Methods
+  /**
+   * Dispatch delete list saga
+   */
   const handleDeleteList = () => {
     dispatch({ type: DELETE_LIST, listId });
+  };
+
+  /**
+   * Handle open create task modal
+   */
+  const handleOpenAddTaskModal = () => {
+    dispatch({ type: TOGGLE_ADD_TASK_MODAL, addTaskModal: true, listId });
   };
 
   return (
@@ -42,6 +55,7 @@ function List({ title, tasks, listId }) {
             sx={{
               mt: '0.5rem',
             }}
+            onClick={handleOpenAddTaskModal}
           >
             {t('List.Add_Task')}
           </Button>

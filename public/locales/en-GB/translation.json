@@ -2,6 +2,7 @@
   "Error": {
     "Email_Required": "Remail required",
     "Title_Required": "Title required",
+    "EndDate_Required": "End date required",
     "Email_Format": "Please enter a valid email"
   },
   "Home": {
@@ -20,8 +21,16 @@
   },
   "AddListModal": {
     "Title": "Add list",
-    "Text": "Please enter the title of your list",
+    "Text": "Please enter a title for your list",
     "Label": "Title",
+    "Cancel": "Cancel",
+    "Validate": "Validate"
+  },
+  "AddTaskModal": {
+    "Title": "Add task",
+    "Text": "Please enter a title and a planned end date for your task",
+    "Title_Label": "Title",
+    "EndDate_Label": "Planned end date",
     "Cancel": "Cancel",
     "Validate": "Validate"
   },

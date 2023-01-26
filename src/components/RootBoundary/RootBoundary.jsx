@@ -1,6 +1,6 @@
 import { useRouteError } from 'react-router-dom';
-import Unauthorized from '../Unauthorized/Unauthorized';
-import NotFound from '../NotFound/NotFound';
+import Unauthorized from '@/views/Unauthorized/Unauthorized';
+import NotFound from '@/views/NotFound/NotFound';
 
 function RootBoundary() {
   const error = useRouteError();

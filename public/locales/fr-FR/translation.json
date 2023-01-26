@@ -2,6 +2,7 @@
   "Error": {
     "Email_Required": "Adresse email requise",
     "Title_Required": "Titre requis",
+    "EndDate_Required": "Date de fin requise",
     "Email_Format": "Veuillez entrer une adresse email valide"
   },
   "Home": {
@@ -22,6 +23,14 @@
     "Title": "Ajout d'une liste",
     "Text": "Veuillez saisir le titre de votre liste",
     "Label": "Titre",
+    "Cancel": "Annuler",
+    "Validate": "Valider"
+  },
+  "AddTaskModal": {
+    "Title": "Ajout d'une tâche",
+    "Text": "Veuillez saisir le titre et la date de fin prévue de votre tâche",
+    "Title_Label": "Titre",
+    "EndDate_Label": "Date de fin prévue",
     "Cancel": "Annuler",
     "Validate": "Valider"
   },

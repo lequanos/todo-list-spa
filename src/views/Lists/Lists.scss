@@ -28,4 +28,13 @@
     bottom: 1rem;
     left: calc(100% - 5rem);
   }
+
+}
+
+.AddTaskModal {
+  &--form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 }

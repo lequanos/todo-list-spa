@@ -10,12 +10,14 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { CREATE_LIST } from '@/plugins/store/actions/actions';
+import {
+  CREATE_LIST,
+  TOGGLE_ADD_LIST_MODAL,
+} from '@/plugins/store/actions/actions';
 
-function AddListModal({ open, setOpen }) {
+function AddListModal() {
   // Hooks
   const {
     handleSubmit,
@@ -31,13 +33,17 @@ function AddListModal({ open, setOpen }) {
   const { title } = watch();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const addListModal = useSelector((state) => state.modal.addListModal);
 
   // Methods
   /**
    * Close modal
    */
   const handleClose = () => {
-    setOpen(false);
+    dispatch({
+      type: TOGGLE_ADD_LIST_MODAL,
+      addListModal: false,
+    });
     setValue('title', '');
   };
 
@@ -59,7 +65,7 @@ function AddListModal({ open, setOpen }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={addListModal} onClose={handleClose}>
       <DialogTitle>{t('AddListModal.Title')}</DialogTitle>
       <DialogContent>
         <DialogContentText>{t('AddListModal.Text')}</DialogContentText>
@@ -93,10 +99,5 @@ function AddListModal({ open, setOpen }) {
     </Dialog>
   );
 }
-
-AddListModal.propTypes = {
-  open: PropTypes.bool.isRequired,
-  setOpen: PropTypes.func.isRequired,
-};
 
 export default AddListModal;

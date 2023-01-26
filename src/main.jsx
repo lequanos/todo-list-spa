@@ -4,6 +4,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Provider as StoreProvider } from 'react-redux';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/en';
 
 import './main.scss';
 import '@fontsource/roboto/300.css';
@@ -31,14 +35,21 @@ const theme = createTheme({
   },
 });
 
+const currentLocale = store.getState().user.lang.split('-')[0];
+console.log(currentLocale);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CssBaseline />
     <StoreProvider store={store}>
       <ThemeProvider theme={theme}>
-        <Suspense fallback={<Loader />}>
-          <RouterProvider router={router} />
-        </Suspense>
+        <LocalizationProvider
+          dateAdapter={AdapterDayjs}
+          adapterLocale={currentLocale}
+        >
+          <Suspense fallback={<Loader />}>
+            <RouterProvider router={router} />
+          </Suspense>
+        </LocalizationProvider>
       </ThemeProvider>
     </StoreProvider>
   </React.StrictMode>,
