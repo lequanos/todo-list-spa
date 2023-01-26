@@ -11,7 +11,10 @@
     "Validate": "Validate"
   },
   "Task": {
-    "Late": "Late"
+    "Late": "Late",
+    "CreateSuccess": "Task created successfully",
+    "UpdateSuccess": "Task updated successfully",
+    "DeleteSuccess": "Task deleted successfully"
   },
   "List": {
     "Add_Task": "Add task",

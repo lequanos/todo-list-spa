@@ -11,7 +11,10 @@
     "Validate": "Valider"
   },
   "Task": {
-    "Late": "Retard"
+    "Late": "Retard",
+    "CreateSuccess": "Tâche créée avec succès",
+    "UpdateSuccess": "Tâche mise à jour avec succès",
+    "DeleteSuccess": "Tâche supprimée avec succès"
   },
   "List": {
     "Add_Task": "Ajouter une tâche",

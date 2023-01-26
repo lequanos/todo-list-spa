@@ -36,6 +36,7 @@ function AddTaskModal() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const addTaskModal = useSelector((state) => state.modal.addTaskModal);
+  const listId = useSelector((state) => state.modal.listId);
 
   // Methods
   /**
@@ -52,7 +53,11 @@ function AddTaskModal() {
   const handleCreateTask = () => {
     dispatch({
       type: CREATE_TASK,
-      title,
+      task: {
+        title,
+        endDate,
+        listId,
+      },
     });
   };
 

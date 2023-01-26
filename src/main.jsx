@@ -36,7 +36,7 @@ const theme = createTheme({
 });
 
 const currentLocale = store.getState().user.lang.split('-')[0];
-console.log(currentLocale);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CssBaseline />
