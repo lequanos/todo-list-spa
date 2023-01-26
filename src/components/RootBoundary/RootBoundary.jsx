@@ -1,6 +1,7 @@
 import { useRouteError } from 'react-router-dom';
 import Unauthorized from '@/views/Unauthorized/Unauthorized';
 import NotFound from '@/views/NotFound/NotFound';
+import InternalServerError from '@/views/InternalServerError/InternalServerError';
 
 function RootBoundary() {
   const error = useRouteError();
@@ -13,7 +14,7 @@ function RootBoundary() {
     return <Unauthorized />;
   }
 
-  return <div>Something went wrong</div>;
+  return <InternalServerError />;
 }
 
 export default RootBoundary;

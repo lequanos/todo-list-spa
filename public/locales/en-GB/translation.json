@@ -40,5 +40,13 @@
   "Unauthorized": {
     "Title": "Please submit your email to access the application",
     "Back": "Back to home"
+  },
+  "NotFound": {
+    "Title": "Page not found",
+    "Back": "Back"
+  },
+  "InternalServerError": {
+    "Title": "Internal error",
+    "Back": "Back"
   }
 }

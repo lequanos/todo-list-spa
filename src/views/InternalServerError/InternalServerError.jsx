@@ -2,9 +2,9 @@ import { Container, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import './NotFound.scss';
+import './InternalServerError.scss';
 
-function NotFound() {
+function InternalServerError() {
   // Hooks
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -18,16 +18,18 @@ function NotFound() {
   };
 
   return (
-    <Container className="notfound">
-      <Typography variant="h1" className="notfound--title">
-        404
+    <Container className="internalServerError">
+      <Typography variant="h1" className="internalServerError--title">
+        500
       </Typography>
-      <Typography variant="h5">{t('NotFound.Title')}</Typography>
+      <Typography Typography variant="h5">
+        {t('InternalServerError.Title')}
+      </Typography>
       <Button variant="outlined" color="secondary" onClick={handleBack}>
-        {t('NotFound.Title')}
+        {t('InternalServerError.Back')}
       </Button>
     </Container>
   );
 }
 
-export default NotFound;
+export default InternalServerError;

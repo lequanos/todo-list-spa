@@ -31,3 +31,24 @@ export function* addTask(action) {
 export function* watchAddTask() {
   yield takeEvery(CREATE_TASK, addTask);
 }
+
+export function* updateTask(action) {
+  try {
+    yield call(taskService.updateTask, action.task);
+    yield put({ type: FETCH_LISTS });
+    yield put({ type: SET_SUCCESS, message: i18n.t('Task.UpdateSuccess') });
+  } catch (error) {
+    if (error.response?.status === 401)
+      throw new Response('', {
+        status: 401,
+      });
+    yield put({
+      type: SET_ERROR,
+      message: error.response.message || error.response.data.message,
+    });
+  }
+}
+
+export function* watchUpdateTask() {
+  yield takeEvery(UPDATE_TASK, updateTask);
+}

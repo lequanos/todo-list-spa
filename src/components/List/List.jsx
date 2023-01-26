@@ -69,6 +69,7 @@ function List({ title, tasks, listId }) {
           {tasks.map((task) => (
             <Task
               key={task._id}
+              id={task._id}
               title={task.title}
               endDate={task.endDate}
               status={task.status}

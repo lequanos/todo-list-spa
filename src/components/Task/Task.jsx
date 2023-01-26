@@ -9,13 +9,44 @@ import {
 } from '@mui/material';
 import { Edit } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 
 import './Task.scss';
+import { UPDATE_TASK } from '@/plugins/store/actions/actions';
 
-function Task({ title, endDate, status, listId }) {
+function Task({ id, title, endDate, status, listId }) {
   // Hooks
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  // Methods
+  /**
+   * Update status of a task
+   */
+  const handleCheckTask = () => {
+    dispatch({
+      type: UPDATE_TASK,
+      task: { id, title, endDate, listId, status: getTaskStatus() },
+    });
+  };
+
+  /**
+   * Get status of a task for update task
+   */
+  const getTaskStatus = () => {
+    switch (true) {
+      case status === 'late':
+        return 'inactive';
+      case status === 'active':
+        return 'inactive';
+      case status === 'inactive' && dayjs().isAfter(dayjs(endDate)):
+        return 'late';
+      default:
+        return 'active';
+    }
+  };
 
   return (
     <>
@@ -35,6 +66,7 @@ function Task({ title, endDate, status, listId }) {
             edge="start"
             checked={status === 'inactive'}
             disableRipple
+            onChange={handleCheckTask}
           />
         </ListItemIcon>
         <ListItemText
@@ -65,6 +97,7 @@ function Task({ title, endDate, status, listId }) {
 }
 
 Task.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   endDate: PropTypes.string,
   status: PropTypes.string,
@@ -72,6 +105,7 @@ Task.propTypes = {
 };
 
 Task.defaultProps = {
+  id: '',
   title: '',
   endDate: '',
   status: '',

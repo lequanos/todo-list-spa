@@ -40,5 +40,13 @@
   "Unauthorized": {
     "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
     "Back": "Retour à l'accueil"
+  },
+  "NotFound": {
+    "Title": "Page introuvable",
+    "Back": "Retour"
+  },
+  "InternalServerError": {
+    "Title": "Erreur interne",
+    "Back": "Retour"
   }
 }
