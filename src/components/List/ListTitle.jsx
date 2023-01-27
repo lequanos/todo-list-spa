@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { TextField, Box, InputAdornment, IconButton } from '@mui/material';
 import { Edit } from '@mui/icons-material';
 import { Controller, useForm } from 'react-hook-form';
@@ -56,6 +56,11 @@ function ListTitle({ title: titleProps, tasks, listId }) {
     }
   };
 
+  const isCompletedList = useMemo(
+    () => tasks.every((task) => task.status === 'inactive') && tasks.length,
+    [tasks],
+  );
+
   return (
     <Box component="form" onSubmit={handleSubmit(handleUpdateList)}>
       <Controller
@@ -73,7 +78,10 @@ function ListTitle({ title: titleProps, tasks, listId }) {
               readOnly,
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconButton disabled={!readOnly} onClick={handleEditTitle}>
+                  <IconButton
+                    disabled={!readOnly || isCompletedList}
+                    onClick={handleEditTitle}
+                  >
                     <Edit fontSize="small" />
                   </IconButton>
                 </InputAdornment>

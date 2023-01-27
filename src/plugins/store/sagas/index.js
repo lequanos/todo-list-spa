@@ -5,7 +5,12 @@ import {
   watchUpdateList,
   watchDeleteList,
 } from './lists';
-import { watchAddTask, watchToggleCheckTask, watchUpdateTask } from './tasks';
+import {
+  watchAddTask,
+  watchToggleCheckTask,
+  watchUpdateTask,
+  watchDeleteTask,
+} from './tasks';
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +21,6 @@ export default function* rootSaga() {
     watchAddTask(),
     watchToggleCheckTask(),
     watchUpdateTask(),
+    watchDeleteTask(),
   ]);
 }

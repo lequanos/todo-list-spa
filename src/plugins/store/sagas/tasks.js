@@ -73,3 +73,24 @@ export function* updateTask(action) {
 export function* watchUpdateTask() {
   yield takeEvery(UPDATE_TASK, updateTask);
 }
+
+export function* deleteTask(action) {
+  try {
+    yield call(taskService.deleteTask, action.taskId, action.listId);
+    yield put({ type: FETCH_LISTS });
+    yield put({ type: SET_SUCCESS, message: i18n.t('Task.DeleteSuccess') });
+  } catch (error) {
+    if (error.response?.status === 401)
+      throw new Response('', {
+        status: 401,
+      });
+    yield put({
+      type: SET_ERROR,
+      message: error.response.message || error.response.data.message,
+    });
+  }
+}
+
+export function* watchDeleteTask() {
+  yield takeEvery(DELETE_TASK, deleteTask);
+}

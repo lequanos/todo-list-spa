@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   Card,
   CardHeader,
@@ -14,8 +15,8 @@ import PropTypes from 'prop-types';
 import Task from '../Task/Task';
 import ListTitle from './ListTitle';
 import {
-  DELETE_LIST,
   TOGGLE_TASK_MODAL,
+  TOGGLE_DELETE_MODAL,
 } from '@/plugins/store/actions/actions';
 
 function List({ title, tasks, listId }) {
@@ -25,10 +26,15 @@ function List({ title, tasks, listId }) {
 
   // Methods
   /**
-   * Dispatch delete list saga
+   * Open delete modal for list
    */
   const handleDeleteList = () => {
-    dispatch({ type: DELETE_LIST, listId });
+    dispatch({
+      type: TOGGLE_DELETE_MODAL,
+      deleteModal: true,
+      listId,
+      listTitle: title,
+    });
   };
 
   /**
@@ -38,11 +44,22 @@ function List({ title, tasks, listId }) {
     dispatch({ type: TOGGLE_TASK_MODAL, taskModal: true, listId });
   };
 
+  const isCompletedList = useMemo(
+    () => tasks.every((task) => task.status === 'inactive') && tasks.length,
+    [tasks],
+  );
+
   return (
-    <Card sx={{ width: 350 }} elevation={8}>
+    <Card
+      sx={{
+        width: 350,
+        opacity: isCompletedList ? 0.7 : 1,
+      }}
+      elevation={8}
+    >
       <CardHeader
         action={
-          <IconButton onClick={handleDeleteList}>
+          <IconButton onClick={handleDeleteList} disabled={isCompletedList}>
             <Delete />
           </IconButton>
         }
@@ -56,6 +73,7 @@ function List({ title, tasks, listId }) {
               mt: '0.5rem',
             }}
             onClick={handleOpenTaskModal}
+            disabled={isCompletedList}
           >
             {t('List.Add_Task')}
           </Button>
@@ -74,6 +92,7 @@ function List({ title, tasks, listId }) {
               endDate={task.endDate}
               status={task.status}
               listId={listId}
+              listTitle={title}
             />
           ))}
         </MuiList>

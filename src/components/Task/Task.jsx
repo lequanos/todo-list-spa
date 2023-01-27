@@ -7,20 +7,21 @@ import {
   Checkbox,
   Divider,
 } from '@mui/material';
-import { Edit } from '@mui/icons-material';
+import { Delete, Edit } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 
 import './Task.scss';
-import { TOGGLE_CHECK_TASK } from '@/plugins/store/actions/actions';
 import {
   SET_TASK,
   TOGGLE_TASK_MODAL,
-} from '../../plugins/store/actions/actions';
+  TOGGLE_DELETE_MODAL,
+  TOGGLE_CHECK_TASK,
+} from '@/plugins/store/actions/actions';
 
-function Task({ id, title, endDate, status, listId }) {
+function Task({ id, title, endDate, status, listId, listTitle }) {
   // Hooks
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -60,6 +61,20 @@ function Task({ id, title, endDate, status, listId }) {
     dispatch({ type: TOGGLE_TASK_MODAL, taskModal: true, listId });
   };
 
+  /**
+   * Open delete task modal
+   */
+  const handleDeleteTask = () => {
+    dispatch({
+      type: TOGGLE_DELETE_MODAL,
+      deleteModal: true,
+      taskId: id,
+      taskTitle: title,
+      listId,
+      listTitle,
+    });
+  };
+
   return (
     <>
       <Divider />
@@ -68,12 +83,20 @@ function Task({ id, title, endDate, status, listId }) {
         alignItems="flex-start"
         disableGutters
         secondaryAction={
-          <IconButton
-            onClick={handleOpenTaskModal}
-            disabled={status === 'inactive'}
-          >
-            <Edit />
-          </IconButton>
+          <>
+            <IconButton
+              onClick={handleOpenTaskModal}
+              disabled={status === 'inactive'}
+            >
+              <Edit fontSize="small" />
+            </IconButton>
+            <IconButton
+              onClick={handleDeleteTask}
+              disabled={status === 'inactive'}
+            >
+              <Delete fontSize="small" />
+            </IconButton>
+          </>
         }
       >
         <ListItemIcon>
@@ -117,6 +140,7 @@ Task.propTypes = {
   endDate: PropTypes.string,
   status: PropTypes.string,
   listId: PropTypes.string,
+  listTitle: PropTypes.string,
 };
 
 Task.defaultProps = {
@@ -125,6 +149,7 @@ Task.defaultProps = {
   endDate: '',
   status: '',
   listId: '',
+  listTitle: '',
 };
 
 export default Task;

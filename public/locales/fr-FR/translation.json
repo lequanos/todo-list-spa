@@ -38,6 +38,14 @@
     "Cancel": "Annuler",
     "Validate": "Valider"
   },
+  "DeleteModal": {
+    "DeleteTask_Title": "Suppression d'une tâche",
+    "DeleteList_Title": "Suppression d'une liste",
+    "DeleteTask_Text": "Souhaitez-vous vraiment supprimer la tâche intitulée <strong>{{taskTitle}}</strong> appartenant à la liste <strong>{{listTitle}}</strong> ?",
+    "DeleteList_Text": "Souhaitez-vous vraiment supprimer la liste intitulée <strong>{{listTitle}}</strong> ?",
+    "Cancel": "Annuler",
+    "Validate": "Valider"
+  },
   "Unauthorized": {
     "Title": "Veuillez entrer une adresse mail pour accéder à l'application",
     "Back": "Retour à l'accueil"

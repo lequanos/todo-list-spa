@@ -65,7 +65,7 @@ function ListModal() {
   };
 
   return (
-    <Dialog open={listModal} onClose={handleClose}>
+    <Dialog open={listModal} onClose={handleClose} sx={{ width: '100%' }}>
       <DialogTitle>{t('ListModal.Title')}</DialogTitle>
       <DialogContent>
         <DialogContentText>{t('ListModal.Text')}</DialogContentText>

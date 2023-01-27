@@ -38,6 +38,14 @@
     "Cancel": "Cancel",
     "Validate": "Validate"
   },
+  "DeleteModal": {
+    "DeleteTask_Title": "Delete task",
+    "DeleteList_Title": "Delete list",
+    "DeleteTask_Text": "Do you really want to delete the task <1>{{taskTitle}}</1> belonging to the list <1>{{listTitle}}</1> ?",
+    "DeleteList_Text": "Do you really want to delete the list <1>{{listTitle}}</1> ?",
+    "Cancel": "Cancel",
+    "Validate": "Validate"
+  },
   "Unauthorized": {
     "Title": "Please submit your email to access the application",
     "Back": "Back to home"

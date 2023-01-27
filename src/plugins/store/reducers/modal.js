@@ -1,12 +1,17 @@
 import {
   TOGGLE_LIST_MODAL,
   TOGGLE_TASK_MODAL,
+  TOGGLE_DELETE_MODAL,
 } from '@/plugins/store/actions/actions';
 
 export const initialState = {
   listModal: false,
   taskModal: false,
+  deleteModal: false,
   listId: '',
+  taskId: '',
+  listTitle: '',
+  taskTitle: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -22,6 +27,16 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         taskModal: action.taskModal,
         listId: action.listId || '',
+      };
+    }
+    case TOGGLE_DELETE_MODAL: {
+      return {
+        ...state,
+        deleteModal: action.deleteModal,
+        listId: action.listId || '',
+        taskId: action.taskId || '',
+        listTitle: action.listTitle || '',
+        taskTitle: action.taskTitle || '',
       };
     }
     default:

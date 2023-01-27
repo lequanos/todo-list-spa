@@ -8,6 +8,7 @@ import List from '@/components/List/List';
 import Toast from '@/components/Toast/Toast';
 import ListModal from './ListModal';
 import TaskModal from './TaskModal';
+import DeleteModal from './DeleteModal';
 import {
   FETCH_LISTS,
   TOGGLE_LIST_MODAL,
@@ -54,6 +55,7 @@ function Lists() {
       </Fab>
       <ListModal />
       <TaskModal />
+      <DeleteModal />
     </>
   );
 }
