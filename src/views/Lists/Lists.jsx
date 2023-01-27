@@ -1,25 +1,32 @@
 import { Container, Fab } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import './Lists.scss';
 import List from '@/components/List/List';
 import Toast from '@/components/Toast/Toast';
-import AddListModal from './AddListModal';
-import { FETCH_LISTS } from '@/plugins/store/actions/actions';
+import ListModal from './ListModal';
+import TaskModal from './TaskModal';
+import DeleteModal from './DeleteModal';
+import {
+  FETCH_LISTS,
+  TOGGLE_LIST_MODAL,
+} from '@/plugins/store/actions/actions';
 
 function Lists() {
   // Hooks
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.lists);
-  const [open, setOpen] = useState(false);
 
   /**
-   * Open add list modal
+   * Open list modal
    */
-  const handleOpenAddModal = () => {
-    setOpen(true);
+  const handleOpenListModal = () => {
+    dispatch({
+      type: TOGGLE_LIST_MODAL,
+      listModal: true,
+    });
   };
 
   useEffect(() => {
@@ -42,11 +49,13 @@ function Lists() {
       <Fab
         className="Lists--add-btn"
         color="secondary"
-        onClick={handleOpenAddModal}
+        onClick={handleOpenListModal}
       >
         <Add />
       </Fab>
-      <AddListModal open={open} setOpen={setOpen} />
+      <ListModal />
+      <TaskModal />
+      <DeleteModal />
     </>
   );
 }

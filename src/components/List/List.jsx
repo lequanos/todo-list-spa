@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   Card,
   CardHeader,
@@ -11,9 +12,13 @@ import { Delete, AddCircleOutlined } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import './List.scss';
 import Task from '../Task/Task';
 import ListTitle from './ListTitle';
-import { DELETE_LIST } from '@/plugins/store/actions/actions';
+import {
+  TOGGLE_TASK_MODAL,
+  TOGGLE_DELETE_MODAL,
+} from '@/plugins/store/actions/actions';
 
 function List({ title, tasks, listId }) {
   // Hooks
@@ -21,27 +26,55 @@ function List({ title, tasks, listId }) {
   const dispatch = useDispatch();
 
   // Methods
+  /**
+   * Open delete modal for list
+   */
   const handleDeleteList = () => {
-    dispatch({ type: DELETE_LIST, listId });
+    dispatch({
+      type: TOGGLE_DELETE_MODAL,
+      deleteModal: true,
+      listId,
+      listTitle: title,
+    });
   };
 
+  /**
+   * Handle open create task modal
+   */
+  const handleOpenTaskModal = () => {
+    dispatch({ type: TOGGLE_TASK_MODAL, taskModal: true, listId });
+  };
+
+  const isCompletedList = useMemo(
+    () => tasks.every((task) => task.status === 'inactive') && tasks.length,
+    [tasks],
+  );
+
   return (
-    <Card sx={{ width: 350 }} elevation={8}>
+    <Card
+      sx={{
+        width: 350,
+        opacity: isCompletedList ? 0.7 : 1,
+      }}
+      elevation={8}
+    >
       <CardHeader
         action={
-          <IconButton onClick={handleDeleteList}>
+          <IconButton onClick={handleDeleteList} disabled={isCompletedList}>
             <Delete />
           </IconButton>
         }
         title={<ListTitle title={title} tasks={tasks} listId={listId} />}
         subheader={
           <Button
-            className="List--button"
+            className={isCompletedList ? 'List--inactive' : ''}
             startIcon={<AddCircleOutlined />}
             size="small"
             sx={{
               mt: '0.5rem',
             }}
+            onClick={handleOpenTaskModal}
+            disabled={isCompletedList}
           >
             {t('List.Add_Task')}
           </Button>
@@ -55,10 +88,12 @@ function List({ title, tasks, listId }) {
           {tasks.map((task) => (
             <Task
               key={task._id}
+              id={task._id}
               title={task.title}
               endDate={task.endDate}
               status={task.status}
               listId={listId}
+              listTitle={title}
             />
           ))}
         </MuiList>

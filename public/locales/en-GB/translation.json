@@ -2,6 +2,7 @@
   "Error": {
     "Email_Required": "Remail required",
     "Title_Required": "Title required",
+    "EndDate_Required": "End date required",
     "Email_Format": "Please enter a valid email"
   },
   "Home": {
@@ -10,7 +11,10 @@
     "Validate": "Validate"
   },
   "Task": {
-    "Late": "Late"
+    "Late": "Late",
+    "CreateSuccess": "Task created successfully",
+    "UpdateSuccess": "Task updated successfully",
+    "DeleteSuccess": "Task deleted successfully"
   },
   "List": {
     "Add_Task": "Add task",
@@ -18,15 +22,40 @@
     "UpdateSuccess": "List updated successfully",
     "DeleteSuccess": "List deleted successfully"
   },
-  "AddListModal": {
+  "ListModal": {
     "Title": "Add list",
-    "Text": "Please enter the title of your list",
+    "Text": "Please enter a title for your list",
     "Label": "Title",
+    "Cancel": "Cancel",
+    "Validate": "Validate"
+  },
+  "TaskModal": {
+    "CreateTitle": "Add task",
+    "UpdateTitle": "Update task",
+    "Text": "Please enter a title and a planned end date for your task",
+    "Title_Label": "Title",
+    "EndDate_Label": "Planned end date",
+    "Cancel": "Cancel",
+    "Validate": "Validate"
+  },
+  "DeleteModal": {
+    "DeleteTask_Title": "Delete task",
+    "DeleteList_Title": "Delete list",
+    "DeleteTask_Text": "Do you really want to delete the task <strong>{{taskTitle}}</strong> belonging to the list <strong>{{listTitle}}</strong> ?",
+    "DeleteList_Text": "Do you really want to delete the list <strong>{{listTitle}}</strong> ?",
     "Cancel": "Cancel",
     "Validate": "Validate"
   },
   "Unauthorized": {
     "Title": "Please submit your email to access the application",
     "Back": "Back to home"
+  },
+  "NotFound": {
+    "Title": "Page not found",
+    "Back": "Back"
+  },
+  "InternalServerError": {
+    "Title": "Internal error",
+    "Back": "Back"
   }
 }

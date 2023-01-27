@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { TextField, Box, InputAdornment, IconButton } from '@mui/material';
 import { Edit } from '@mui/icons-material';
 import { Controller, useForm } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import './List.scss';
 import { UPDATE_LIST } from '@/plugins/store/actions/actions';
 
 function ListTitle({ title: titleProps, tasks, listId }) {
@@ -56,6 +57,11 @@ function ListTitle({ title: titleProps, tasks, listId }) {
     }
   };
 
+  const isCompletedList = useMemo(
+    () => tasks.every((task) => task.status === 'inactive') && tasks.length,
+    [tasks],
+  );
+
   return (
     <Box component="form" onSubmit={handleSubmit(handleUpdateList)}>
       <Controller
@@ -66,6 +72,7 @@ function ListTitle({ title: titleProps, tasks, listId }) {
         }}
         render={({ field }) => (
           <TextField
+            className={isCompletedList ? 'List--inactive' : ''}
             size="small"
             error={!!errors.title}
             helperText={errors.title?.message}
@@ -73,7 +80,10 @@ function ListTitle({ title: titleProps, tasks, listId }) {
               readOnly,
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconButton disabled={!readOnly} onClick={handleEditTitle}>
+                  <IconButton
+                    disabled={!readOnly || isCompletedList}
+                    onClick={handleEditTitle}
+                  >
                     <Edit fontSize="small" />
                   </IconButton>
                 </InputAdornment>

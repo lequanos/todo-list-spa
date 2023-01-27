@@ -6,3 +6,7 @@
   overflow-y: auto;
   position: relative;
 }
+
+div[role="dialog"].MuiPaper-rounded {
+  width: 40%;
+}
