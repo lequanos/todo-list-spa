@@ -14,13 +14,9 @@
     "@fontsource/roboto": "^4.5.8",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.6",
-<<<<<<< HEAD
-    "axios": "^1.2.4",
-=======
     "@mui/x-date-pickers": "^5.0.15",
     "axios": "^1.2.4",
     "dayjs": "^1.11.7",
->>>>>>> feature/task
     "i18next": "^22.4.9",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.1.1",
