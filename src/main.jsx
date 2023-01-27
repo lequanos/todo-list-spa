@@ -4,13 +4,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Provider as StoreProvider } from 'react-redux';
-<<<<<<< HEAD
-=======
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import 'dayjs/locale/fr';
 import 'dayjs/locale/en';
->>>>>>> feature/task
 
 import './main.scss';
 import '@fontsource/roboto/300.css';
