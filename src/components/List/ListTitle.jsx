@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
+import './List.scss';
 import { UPDATE_LIST } from '@/plugins/store/actions/actions';
 
 function ListTitle({ title: titleProps, tasks, listId }) {
@@ -71,6 +72,7 @@ function ListTitle({ title: titleProps, tasks, listId }) {
         }}
         render={({ field }) => (
           <TextField
+            className={isCompletedList ? 'List--inactive' : ''}
             size="small"
             error={!!errors.title}
             helperText={errors.title?.message}

@@ -12,6 +12,7 @@ import { Delete, AddCircleOutlined } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import './List.scss';
 import Task from '../Task/Task';
 import ListTitle from './ListTitle';
 import {
@@ -66,7 +67,7 @@ function List({ title, tasks, listId }) {
         title={<ListTitle title={title} tasks={tasks} listId={listId} />}
         subheader={
           <Button
-            className="List--button"
+            className={isCompletedList ? 'List--inactive' : ''}
             startIcon={<AddCircleOutlined />}
             size="small"
             sx={{

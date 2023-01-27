@@ -41,8 +41,8 @@
   "DeleteModal": {
     "DeleteTask_Title": "Delete task",
     "DeleteList_Title": "Delete list",
-    "DeleteTask_Text": "Do you really want to delete the task <1>{{taskTitle}}</1> belonging to the list <1>{{listTitle}}</1> ?",
-    "DeleteList_Text": "Do you really want to delete the list <1>{{listTitle}}</1> ?",
+    "DeleteTask_Text": "Do you really want to delete the task <strong>{{taskTitle}}</strong> belonging to the list <strong>{{listTitle}}</strong> ?",
+    "DeleteList_Text": "Do you really want to delete the list <strong>{{listTitle}}</strong> ?",
     "Cancel": "Cancel",
     "Validate": "Validate"
   },
