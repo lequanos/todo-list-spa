@@ -29,6 +29,19 @@
     left: calc(100% - 5rem);
   }
 
+  &--select-lang {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    min-width: 15%;
+    background-color: white;
+    padding: 0.5rem;
+
+    .MuiFormControl-root {
+      width: 100%;
+    }
+  }
+
 }
 
 .TaskModal {

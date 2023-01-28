@@ -1,4 +1,9 @@
 {
+  "Lang": {
+    "Select_Label": "Select your language",
+    "French": "French",
+    "English": "English"
+  },
   "Error": {
     "Email_Required": "Remail required",
     "Title_Required": "Title required",
@@ -10,13 +15,17 @@
     "Email_Label": "Email",
     "Validate": "Validate"
   },
+  "Lists": {
+    "CreateList": "Create a list"
+  },
   "Task": {
     "Late": "Late",
+    "PlannedEnd": "Planned to end",
     "CreateSuccess": "Task created successfully",
     "UpdateSuccess": "Task updated successfully",
     "DeleteSuccess": "Task deleted successfully",
-    "Edit": "Editer",
-    "Delete": "Supprimer"
+    "Edit": "Edit",
+    "Delete": "Delete"
   },
   "List": {
     "Add_Task": "Add task",

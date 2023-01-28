@@ -128,7 +128,7 @@ function Task({ id, title, endDate, status, listId, listTitle }) {
                 variant="caption"
                 display="block"
               >
-                Fin prévue :
+                {t('Task.PlannedEnd')}
               </Typography>
               <Typography
                 className={status === 'late' ? 'Task--late' : ''}
