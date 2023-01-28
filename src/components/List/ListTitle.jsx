@@ -1,6 +1,5 @@
-import { useState, useRef, useMemo } from 'react';
-import { TextField, Box, InputAdornment, IconButton } from '@mui/material';
-import { Edit } from '@mui/icons-material';
+import { useEffect, useRef, useMemo } from 'react';
+import { TextField, Box } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -9,7 +8,7 @@ import PropTypes from 'prop-types';
 import './List.scss';
 import { UPDATE_LIST } from '@/plugins/store/actions/actions';
 
-function ListTitle({ title: titleProps, tasks, listId }) {
+function ListTitle({ title: titleProps, tasks, listId, edit }) {
   const {
     handleSubmit,
     control,
@@ -23,7 +22,6 @@ function ListTitle({ title: titleProps, tasks, listId }) {
   const { title } = watch();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [readOnly, setReadOnly] = useState(true);
   const inputRef = useRef();
 
   /**
@@ -43,24 +41,18 @@ function ListTitle({ title: titleProps, tasks, listId }) {
         })),
       },
     });
-    setReadOnly(!readOnly);
-  };
-
-  /**
-   * Edit title
-   */
-  const handleEditTitle = () => {
-    setReadOnly(!readOnly);
-
-    if (inputRef.current) {
-      inputRef.current.children[0].children[1].focus();
-    }
   };
 
   const isCompletedList = useMemo(
     () => tasks.every((task) => task.status === 'inactive') && tasks.length,
     [tasks],
   );
+
+  useEffect(() => {
+    if (inputRef.current && edit) {
+      inputRef.current.children[0].children[0].select();
+    }
+  }, [edit]);
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleUpdateList)}>
@@ -77,17 +69,7 @@ function ListTitle({ title: titleProps, tasks, listId }) {
             error={!!errors.title}
             helperText={errors.title?.message}
             InputProps={{
-              readOnly,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton
-                    disabled={!readOnly || isCompletedList}
-                    onClick={handleEditTitle}
-                  >
-                    <Edit fontSize="small" />
-                  </IconButton>
-                </InputAdornment>
-              ),
+              readOnly: !edit,
             }}
             {...field}
             ref={(e) => {
@@ -105,6 +87,7 @@ ListTitle.propTypes = {
   title: PropTypes.string.isRequired,
   tasks: PropTypes.array,
   listId: PropTypes.string.isRequired,
+  edit: PropTypes.bool.isRequired,
 };
 
 ListTitle.defaultProps = {

@@ -14,13 +14,17 @@
     "Late": "Retard",
     "CreateSuccess": "Tâche créée avec succès",
     "UpdateSuccess": "Tâche mise à jour avec succès",
-    "DeleteSuccess": "Tâche supprimée avec succès"
+    "DeleteSuccess": "Tâche supprimée avec succès",
+    "Edit": "Editer",
+    "Delete": "Supprimer"
   },
   "List": {
     "Add_Task": "Ajouter une tâche",
     "CreateSuccess": "Liste créée avec succès",
     "UpdateSuccess": "Liste mise à jour avec succès",
-    "DeleteSuccess": "Liste supprimée avec succès"
+    "DeleteSuccess": "Liste supprimée avec succès",
+    "Edit": "Editer",
+    "Delete": "Supprimer"
   },
   "ListModal": {
     "Title": "Ajout d'une liste",

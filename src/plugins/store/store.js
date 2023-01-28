@@ -4,6 +4,9 @@ import {
   applyMiddleware,
 } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/en';
+import dayjs from 'dayjs';
 
 import reducer from './reducers';
 import i18n from '../lang/i18n';
@@ -19,6 +22,7 @@ sagaMiddleware.run(rootSaga);
 
 store.subscribe(() => {
   i18n.changeLanguage(store.getState().user.lang);
+  dayjs.locale(store.getState().user.lang.split('-')[0]);
 });
 
 export default store;

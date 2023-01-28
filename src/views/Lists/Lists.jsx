@@ -1,4 +1,4 @@
-import { Container, Fab } from '@mui/material';
+import { Container, Fab, Tooltip } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -46,13 +46,15 @@ function Lists() {
         ))}
         <Toast />
       </Container>
-      <Fab
-        className="Lists--add-btn"
-        color="secondary"
-        onClick={handleOpenListModal}
-      >
-        <Add />
-      </Fab>
+      <Tooltip title="Créer une liste">
+        <Fab
+          className="Lists--add-btn"
+          color="secondary"
+          onClick={handleOpenListModal}
+        >
+          <Add />
+        </Fab>
+      </Tooltip>
       <ListModal />
       <TaskModal />
       <DeleteModal />

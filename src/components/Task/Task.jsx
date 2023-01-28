@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ListItem,
   ListItemText,
@@ -6,8 +7,10 @@ import {
   ListItemIcon,
   Checkbox,
   Divider,
+  Menu,
+  MenuItem,
 } from '@mui/material';
-import { Delete, Edit } from '@mui/icons-material';
+import { MoreVert, Delete, Edit } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
@@ -25,6 +28,7 @@ function Task({ id, title, endDate, status, listId, listTitle }) {
   // Hooks
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // Methods
   /**
@@ -75,6 +79,20 @@ function Task({ id, title, endDate, status, listId, listTitle }) {
     });
   };
 
+  /**
+   * Open task menu
+   */
+  const handleOpenTaskMenu = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  /**
+   * Close task menu
+   */
+  const handleCloseTaskMenu = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <Divider />
@@ -83,20 +101,12 @@ function Task({ id, title, endDate, status, listId, listTitle }) {
         alignItems="flex-start"
         disableGutters
         secondaryAction={
-          <>
-            <IconButton
-              onClick={handleOpenTaskModal}
-              disabled={status === 'inactive'}
-            >
-              <Edit fontSize="small" />
-            </IconButton>
-            <IconButton
-              onClick={handleDeleteTask}
-              disabled={status === 'inactive'}
-            >
-              <Delete fontSize="small" />
-            </IconButton>
-          </>
+          <IconButton
+            onClick={handleOpenTaskMenu}
+            disabled={status === 'inactive'}
+          >
+            <MoreVert fontSize="small" />
+          </IconButton>
         }
       >
         <ListItemIcon>
@@ -124,12 +134,37 @@ function Task({ id, title, endDate, status, listId, listTitle }) {
                 className={status === 'late' ? 'Task--late' : ''}
                 variant="caption"
               >
-                {new Date(endDate).toLocaleString()}
+                {dayjs(endDate).format('lll')}
               </Typography>
             </>
           }
         />
       </ListItem>
+      <Menu
+        className="Task--menu"
+        anchorEl={anchorEl}
+        open={!!anchorEl}
+        onClose={handleCloseTaskMenu}
+        onClick={handleCloseTaskMenu}
+        PaperProps={{
+          elevation: 0,
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      >
+        <MenuItem onClick={handleOpenTaskModal}>
+          <ListItemIcon>
+            <Edit fontSize="small" />
+          </ListItemIcon>
+          {t('Task.Edit')}
+        </MenuItem>
+        <MenuItem onClick={handleDeleteTask}>
+          <ListItemIcon>
+            <Delete fontSize="small" />
+          </ListItemIcon>
+          {t('Task.Delete')}
+        </MenuItem>
+      </Menu>
     </>
   );
 }
