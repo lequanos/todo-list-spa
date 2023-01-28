@@ -1,7 +1,8 @@
-import { Container, Fab } from '@mui/material';
+import { Container, Fab, Tooltip } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import './Lists.scss';
 import List from '@/components/List/List';
@@ -9,6 +10,7 @@ import Toast from '@/components/Toast/Toast';
 import ListModal from './ListModal';
 import TaskModal from './TaskModal';
 import DeleteModal from './DeleteModal';
+import SelectLang from './SelectLang';
 import {
   FETCH_LISTS,
   TOGGLE_LIST_MODAL,
@@ -18,6 +20,7 @@ function Lists() {
   // Hooks
   const dispatch = useDispatch();
   const lists = useSelector((state) => state.lists);
+  const { t } = useTranslation();
 
   /**
    * Open list modal
@@ -46,16 +49,19 @@ function Lists() {
         ))}
         <Toast />
       </Container>
-      <Fab
-        className="Lists--add-btn"
-        color="secondary"
-        onClick={handleOpenListModal}
-      >
-        <Add />
-      </Fab>
+      <Tooltip title={t('Lists.CreateList')}>
+        <Fab
+          className="Lists--add-btn"
+          color="secondary"
+          onClick={handleOpenListModal}
+        >
+          <Add />
+        </Fab>
+      </Tooltip>
       <ListModal />
       <TaskModal />
       <DeleteModal />
+      <SelectLang />
     </>
   );
 }
