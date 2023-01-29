@@ -97,6 +97,7 @@ function List({ title, tasks, listId }) {
               tasks={tasks}
               listId={listId}
               edit={edit}
+              setEdit={setEdit}
             />
           }
           subheader={

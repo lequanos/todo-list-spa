@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import './List.scss';
 import { UPDATE_LIST } from '@/plugins/store/actions/actions';
 
-function ListTitle({ title: titleProps, tasks, listId, edit }) {
+function ListTitle({ title: titleProps, tasks, listId, edit, setEdit }) {
   const {
     handleSubmit,
     control,
@@ -41,6 +41,7 @@ function ListTitle({ title: titleProps, tasks, listId, edit }) {
         })),
       },
     });
+    setEdit(false);
   };
 
   const isCompletedList = useMemo(
@@ -88,6 +89,7 @@ ListTitle.propTypes = {
   tasks: PropTypes.array,
   listId: PropTypes.string.isRequired,
   edit: PropTypes.bool.isRequired,
+  setEdit: PropTypes.func.isRequired,
 };
 
 ListTitle.defaultProps = {
